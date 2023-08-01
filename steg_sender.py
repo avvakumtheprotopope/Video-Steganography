@@ -308,9 +308,9 @@ def main(params_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('ParamsPath',
+    parser.add_argument('params_path',
                     type=str,
                     help='Path to .txt file with parameters')
     args = parser.parse_args()
-    params_path = args.ParamsPath
+    params_path = args.params_path
     main(params_path)
