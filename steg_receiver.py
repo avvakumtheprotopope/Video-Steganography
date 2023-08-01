@@ -178,13 +178,18 @@ def main(params_path):
         f.close()
     if parsed_params_count !=3:
         print('Could not parse all 3 parameters')
+        sys.exit(2)
+    if ratio<2:
+        print('Ratio should have value equal to 2 or greater')
+        sys.exit(3)
+    if mult_coef<1:
+        print('Message multiplication coefficient should have value equal to 1 or greater')
         sys.exit(4)
-
     allowed_input_extensions = ['.mkv']
     input_ext = os.path.splitext(input_video_fname)[1]
     if not(input_ext  in allowed_input_extensions):
         print("Input filename has unsupported extension")
-        sys.exit(2)
+        sys.exit(5)
     
     remove_some_stuff(input_ext)
     scriptname = getframeinfo(currentframe()).filename
@@ -215,7 +220,7 @@ def main(params_path):
         message_num = int(input('Enter number of message you want to get (1 or 2)'))
         if message_num not in [1,2]:
             print('Incorrect message number again, exiting')
-            sys.exit(3)
+            sys.exit(6)
     evenness_seed = 3652
     seed(evenness_seed + count)
     evenness = randint(0,1)

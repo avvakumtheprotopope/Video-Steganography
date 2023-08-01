@@ -198,17 +198,22 @@ def main(params_path):
     if parsed_params_count !=6:
         print('Could not parse all 6 parameters')
         sys.exit(2)
-
+    if ratio<2:
+        print('Ratio should have value equal to 2 or greater')
+        sys.exit(3)
+    if mult_coef<1:
+        print('Message multiplication coefficient should have value equal to 1 or greater')
+        sys.exit(4)
     allowed_input_extensions = ['.avi','.mkv','.mp4']
     allowed_output_extensions = ['.mkv']
     input_ext = os.path.splitext(input_video_fname)[1]
     output_ext = os.path.splitext(output_video_fname)[1]
     if not(input_ext  in allowed_input_extensions):
         print("Input filename has unsupported extension")
-        sys.exit(3)
+        sys.exit(5)
     if not(output_ext  in allowed_output_extensions):
         print("Output filename has unsupported extension")
-        sys.exit(4)
+        sys.exit(6)
     
     remove_some_stuff(input_ext,output_ext)
     scriptname = getframeinfo(currentframe()).filename
@@ -247,14 +252,14 @@ def main(params_path):
     int_duration = int(old_clip.duration)
     if(int_duration == 0):
         print("Input container is too short")
-        sys.exit(5)
+        sys.exit(7)
     print(f'Input videofile duration = {old_clip.duration}')
     hours = int_duration//3600
     hours_str = str(hours)
 
     if(len(hours_str)>2):
         print("Input container is too long")
-        sys.exit(6)
+        sys.exit(8)
     if(len(hours_str) == 1):
         hours_str = '0' + hours_str
 
@@ -286,11 +291,11 @@ def main(params_path):
     ret = put_msg_in_frames(message1_fname,first_seed,evenness,ratio,mult_coef)
     if ret == -1:
         remove_some_stuff(input_ext,output_ext)
-        sys.exit(7)
+        sys.exit(9)
     ret = put_msg_in_frames(message2_fname,second_seed,abs(evenness - 1),ratio,mult_coef)
     if ret == -1:
         remove_some_stuff(input_ext,output_ext)
-        sys.exit(8)
+        sys.exit(10)
     assemble_video(clip.fps,output_video_fname)
     print(f'first seed = {first_seed}')
     
