@@ -1,0 +1,8 @@
+First message:
+  seed:3445
+  evenness:1
+Second message:
+  seed:3942
+  evenness:0
+В качестве файла с параметрами для steg_receiver.py использовать файл params_unfilled.txt,
+вставив путь к скачанному контейнеру

@@ -1,0 +1,3 @@
+INPUT_VIDEO_FILENAME=<путь к загруженному видео>
+RATIO_COEF=107320
+MULTIPLY_COEF=25
